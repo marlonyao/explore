@@ -5,5 +5,5 @@
 
 ## 运行
 1. npm install （或者cnpm install）
-2. npx webpack
+2. npm build
 3. 在浏览器中打开index.html
