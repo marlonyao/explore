@@ -306,3 +306,31 @@ Vue.use(Button)
 
 这样就可以去掉 `UserRouterView` 了。
 
+4. 使用 `UserLayout`
+
+其实和最早的 `UserRouterView` 很类似，只不过换了个名字。
+
+在 `src` 目录下创建 `layouts` 目录，新建 `UserLayout.vue` 文件，内容如下：
+
+```html
+<template>
+  <div>
+    <div class="desc">Ant Design Pro</div>
+    <router-view/>
+  </div>
+</template>
+```
+
+在 `router/index.js` 使用 `UserLayout`：
+
+```javascript
+  {
+    path: "/user",
+    component: () =>
+      import(/* webpackChunkName: "layout" */ "../layouts/UserLayout.vue"),
+    children: [
+      // ...
+    ]
+  }
+```
+
