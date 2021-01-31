@@ -6,11 +6,12 @@ import store from "./store";
 // import "ant-design-vue/dist/antd.less";
 // import Button from "ant-design-vue/lib/button";
 // import "ant-design-vue/lib/button/style";
-import { Button } from "ant-design-vue";
+import { Button, Layout } from "ant-design-vue";
 
 Vue.config.productionTip = false;
 
 Vue.use(Button);
+Vue.use(Layout);
 
 new Vue({
   router,

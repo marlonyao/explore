@@ -463,3 +463,63 @@ router.afterEach(() => {
 ```
 
 现在切换链接时应该能在浏览器顶部看到进度条的提示。
+
+## 第四节：实现可动态改变的页面布局
+
+[视频链接](https://time.geekbang.org/course/detail/100024601-91450)
+
+1. 删掉 `App.vue` template 里的导航内容，只剩下：
+
+```
+<template>
+  <div id="app">
+    <router-view />
+  </div>
+</template>
+```
+
+2. 使用 `Layout` 组件布局 `BasicLayout`
+
+从[这里](https://www.antdv.com/components/layout-cn/#components-layout-demo-sider)拷贝内容到 `layouts/BasicLayout.vue`，并将 `Header`、`router-view`、`SiderMenu`、`Footer` 填入合适的位置。
+
+`BasicLayout.vue`:
+```
+<template>
+  <a-layout id="components-layout-demo-side" style="min-height: 100vh">
+    <a-layout-sider v-model="collapsed" collapsible>
+      <div class="logo" />
+      <SiderMenu />
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0" >
+        <Header/>
+      </a-layout-header>
+      <a-layout-content style="margin: 0 16px">
+        <router-view />
+      </a-layout-content>
+      <a-layout-footer style="text-align: center">
+        <Footer />
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
+</template>
+
+<style>
+#components-layout-demo-side .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+</style>
+```
+
+3. 在 `main.js` 里引入 `Layout` 组件
+
+```
+import { Button, Layout } from "ant-design-vue";
+
+Vue.use(Button);
+Vue.use(Layout);
+```
+
+当引入 `Layout` 时，`babel-plugin-import` 会自动引入 `LayoutSider`、`LayoutHeader` 等组件，不用再引入。
