@@ -334,3 +334,106 @@ Vue.use(Button)
   }
 ```
 
+5. 创建仪表盘页和表单页
+
+和创建登录注册页类似，但使用 `BasicLayout` 模板。
+
+`router/index.js` 内容如下：
+
+```
+  {
+    path: "/",
+    component: () =>
+      import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout.vue"),
+    children: [
+      {
+        path: "/dashboard/analysis",
+        name: "analysis",
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis.vue")
+      },
+      {
+        path: "/dashboard/monitor",
+        name: "monitor",
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Monitor.vue")
+      },
+      {
+        path: "/dashboard/workspace",
+        name: "workspace",
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Workspace.vue")
+      },
+      {
+        path: "/form/basic-form",
+        name: "basic-form",
+        component: () =>
+          import(/* webpackChunkName: "form" */ "../views/Form/BasicForm.vue")
+      },
+      {
+        path: "/form/step-form",
+        name: "step-form",
+        redirect: "form/step-form/info"
+      },
+      {
+        path: "/form/step-form/info",
+        name: "step-form-info",
+        component: () =>
+          import(/* webpackChunkName: "form" */ "../views/Form/StepFormInfo.vue")
+      },
+      {
+        path: "/form/step-form/confirm",
+        name: "step-form-confirm",
+        component: () =>
+          import(/* webpackChunkName: "form" */ "../views/Form/StepFormConfirm.vue")
+      },
+      {
+        path: "/form/step-form/result",
+        name: "step-form-result",
+        component: () =>
+          import(/* webpackChunkName: "form" */ "../views/Form/StepFormResult.vue")
+      },
+    ]
+  },
+```
+
+我没有想视频中那样创建那么多层次的嵌套。
+
+接下来就是创建对应的 `View`，目前就是提供一个简单的占位，以 `Dashboard/Analysis.vue` 举例：
+
+```html
+<template>
+    <div>分析页</div>
+</template>
+```
+
+剩下的 `View` 就不一一列列举了。
+
+`BasicLayout` 内容如下：
+
+```javascript
+<template>
+  <div>
+    <Header/>
+    <SiderMenu/>
+    <router-view/>
+    <Footer/>
+  </div>
+</template>
+
+<script>
+import Header from "./Header.vue";
+import Footer from "./Footer.vue";
+import SiderMenu from "./SiderMenu.vue";
+
+export default {
+  components: {
+    Header,
+    Footer,
+    SiderMenu
+  }
+}
+</script>
+```
+
+需要创建 `Header.vue`, `Footer.vue` 和 `SiderMenu.vue`，也是简单的占位，不列举了。
