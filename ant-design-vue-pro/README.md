@@ -222,3 +222,87 @@ Vue.use(Button)
 
 重新运行看下 `chunk-vendor.js` 大小，应该还是 6.3M。
 
+## 第三节：设计高扩展性的路由
+
+[视频](https://time.geekbang.org/course/detail/100024601-91010)
+
+### 实现登录页和注册页
+
+1. 添加 `/user/login` 和 `/usr/register` 路由
+
+在 `router/index.js` 里添加路由：
+
+```javascript
+  {
+    path: "/user",
+    component: UserRouterView,
+    children: [
+      {
+        path: "/user/login",
+        name: "login",
+        component: () =>
+          import(/* webpackChunkName: "user" */ "../views/User/Login.vue")
+      },
+      {
+        path: "/user/register",
+        name: "register",
+        component: () =>
+          import(/* webpackChunkName: "user" */ "../views/User/Register.vue")
+      },
+    ]
+  },
+```
+
+`/User/Login.vue` 和 `/User/Register.vue` 都使用了异步加载，参考 `Vue Router` 的[路由懒加载](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)。
+
+2. 创建 `router` 所需要的 `View`
+
+上面需要三个 `View`，分别是 `UserRouterView`、`Login` 和 `Register`, 都放在 `views/User` 目录下。
+
+`UserRouterView.vue`:
+
+```html
+<template>
+    <router-view />
+</template>
+```
+
+它只是分发组件，有 `<router-view />` 做一个占位。
+
+`Login.vue`:
+
+```html
+<template>
+    <div>登录页</div>
+</template>
+```
+
+`Register.vue`:
+
+```html
+<template>
+    <div>注册页</div>
+</template>
+```
+
+运行起来之后，手动切换路径至 `/user/login` 或 `/user/register` 应该能够看到对应的登录页和注册页。
+
+3. 去掉 `UserRouterView`
+
+既然 `UserRouterView` 只是一个纯粹的分发，模板里只包含一个 `<router-view>` 标签，就可以用更简单的写法。
+
+因为模板本质上就是一个 `render` 函数，可以写成：
+
+```javascript
+  {
+    path: "/user",
+    // 等价于 UserRouterView
+    component: { render: h => h("router-view") },
+    childrens: [
+      ...
+    ]
+  }
+```
+
+这样就可以去掉 `UserRouterView` 了。
+
