@@ -1,3 +1,3 @@
 <template>
-    <div>监控页</div>
+  <div>监控页</div>
 </template>

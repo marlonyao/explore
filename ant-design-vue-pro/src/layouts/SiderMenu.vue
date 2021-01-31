@@ -1,3 +1,3 @@
 <template>
-    <div>Sider Menu</div>
+  <div>Sider Menu</div>
 </template>

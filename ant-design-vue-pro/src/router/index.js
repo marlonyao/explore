@@ -27,7 +27,7 @@ const routes = [
         name: "register",
         component: () =>
           import(/* webpackChunkName: "user" */ "../views/User/Register.vue")
-      },
+      }
     ]
   },
   {
@@ -43,19 +43,25 @@ const routes = [
         path: "/dashboard/analysis",
         name: "analysis",
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis.vue")
+          import(
+            /* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis.vue"
+          )
       },
       {
         path: "/dashboard/monitor",
         name: "monitor",
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Monitor.vue")
+          import(
+            /* webpackChunkName: "dashboard" */ "../views/Dashboard/Monitor.vue"
+          )
       },
       {
         path: "/dashboard/workspace",
         name: "workspace",
         component: () =>
-          import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Workspace.vue")
+          import(
+            /* webpackChunkName: "dashboard" */ "../views/Dashboard/Workspace.vue"
+          )
       },
       {
         path: "/form",
@@ -76,27 +82,33 @@ const routes = [
         path: "/form/step-form/info",
         name: "step-form-info",
         component: () =>
-          import(/* webpackChunkName: "form" */ "../views/Form/StepFormInfo.vue")
+          import(
+            /* webpackChunkName: "form" */ "../views/Form/StepFormInfo.vue"
+          )
       },
       {
         path: "/form/step-form/confirm",
         name: "step-form-confirm",
         component: () =>
-          import(/* webpackChunkName: "form" */ "../views/Form/StepFormConfirm.vue")
+          import(
+            /* webpackChunkName: "form" */ "../views/Form/StepFormConfirm.vue"
+          )
       },
       {
         path: "/form/step-form/result",
         name: "step-form-result",
         component: () =>
-          import(/* webpackChunkName: "form" */ "../views/Form/StepFormResult.vue")
-      },
+          import(
+            /* webpackChunkName: "form" */ "../views/Form/StepFormResult.vue"
+          )
+      }
     ]
   },
   {
     path: "*",
     name: "404",
     component: NotFound
-  },
+  }
 ];
 
 const router = new VueRouter({
@@ -107,7 +119,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  next()
+  next();
 });
 
 router.afterEach(() => {
