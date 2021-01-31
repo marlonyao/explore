@@ -437,3 +437,29 @@ export default {
 ```
 
 需要创建 `Header.vue`, `Footer.vue` 和 `SiderMenu.vue`，也是简单的占位，不列举了。
+
+6. 增加加载进度条
+
+安装 [nprogress](https://ricostacruz.com/nprogress/) ：
+
+```
+npm i --save nprogress
+```
+
+在 `Vue Router` 的钩子里增加对 `NProgress` 的调用：
+
+```
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next()
+});
+
+router.afterEach(() => {
+  NProgress.done();
+});
+```
+
+现在切换链接时应该能在浏览器顶部看到进度条的提示。

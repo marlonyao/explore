@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import NotFound from "../views/404.vue";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 Vue.use(VueRouter);
 
@@ -34,6 +36,10 @@ const routes = [
       import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout.vue"),
     children: [
       {
+        path: "/dashboard",
+        redirect: "/dashboard/analysis"
+      },
+      {
         path: "/dashboard/analysis",
         name: "analysis",
         component: () =>
@@ -50,6 +56,10 @@ const routes = [
         name: "workspace",
         component: () =>
           import(/* webpackChunkName: "dashboard" */ "../views/Dashboard/Workspace.vue")
+      },
+      {
+        path: "/form",
+        redirect: "/form/basic-form"
       },
       {
         path: "/form/basic-form",
@@ -93,6 +103,15 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next()
+});
+
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;
