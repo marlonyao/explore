@@ -4,6 +4,6 @@
 
 <style scoped>
 .header {
-    float: right
+  float: right;
 }
 </style>
