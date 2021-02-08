@@ -523,3 +523,52 @@ Vue.use(Layout);
 ```
 
 当引入 `Layout` 时，`babel-plugin-import` 会自动引入 `LayoutSider`、`LayoutHeader` 等组件，不用再引入。
+
+4. 让菜单可动态折叠/展开
+
+`BasicLayout` 禁用 trigger，引入 icon 组件作为 trigger，引入样式。
+```html
+  <a-layout id="components-layout-demo-side" style="min-height: 100vh">
+    <a-layout-sider :trigger="null" v-model="collapsed" collapsible>
+      ...
+    </a-layout-sider>
+    ...
+    <a-layout>
+      <a-layout-header ...>
+        <a-icon
+          class="trigger"
+          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="collapsed = !collapsed"
+        ></a-icon>
+      </a-layout-header>
+    </a-layout>
+  </a-layout>
+
+  ...
+
+<style scoped>
+.trigger {
+  padding: 0 20px;
+  line-height: 64px;
+  font-size: 20px;
+}
+
+.trigger:hover {
+  background-color: #eee;
+}
+</style>
+```
+
+Header.vue: 调整 header 的样式
+```html
+<template>
+  <div class="header">Header</div>
+</template>
+
+<style scoped>
+.header {
+    float: right
+}
+</style>
+
+```
