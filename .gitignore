@@ -2,3 +2,4 @@
 **/package-lock.json
 */dist/
 *.code-workspace
+**/__snapshots__/
