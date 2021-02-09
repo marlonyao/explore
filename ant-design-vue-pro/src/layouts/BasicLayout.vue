@@ -1,8 +1,14 @@
 <template>
-  <div>
+  <div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
-      <a-layout-sider :trigger="null" v-model="collapsed" collapsible>
-        <div class="logo" />
+      <a-layout-sider
+        v-if="navLayout === 'left'"
+        :theme="navTheme"
+        :trigger="null"
+        v-model="collapsed"
+        collapsible
+      >
+        <div class="logo">Ant Design Vue Pro</div>
         <SiderMenu />
       </a-layout-sider>
       <a-layout>
@@ -37,22 +43,30 @@ export default {
     Header,
     Footer,
     SiderMenu,
-    SettingsDrawer
+    SettingsDrawer,
   },
   data() {
     return {
-      collapsed: false
+      collapsed: false,
     };
-  }
+  },
+  computed: {
+    navTheme: function () {
+      return this.$route.query.navTheme || "dark";
+    },
+    navLayout: function () {
+      return this.$route.query.navLayout || "left";
+    },
+  },
 };
 </script>
 
 <style scoped>
-#components-layout-demo-side .logo {
+/* #components-layout-demo-side .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
-}
+} */
 
 .trigger {
   padding: 0 20px;
@@ -62,5 +76,15 @@ export default {
 
 .trigger:hover {
   background-color: #eee;
+}
+
+.logo {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.nav-theme-dark >>> .logo {
+  color: #fff;
 }
 </style>

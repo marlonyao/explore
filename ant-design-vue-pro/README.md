@@ -572,3 +572,13 @@ Header.vue: 调整 header 的样式
 </style>
 
 ```
+
+5. 增加抽屉组件
+
+主要是 SettingsDrawer 组件，它使用 Ant Drawer 组件。
+
+
+6. 抽屉内容引入 theme 和 layout 选项
+
+主要是在抽屉里引入theme和layout的单选框，change时将值保存在$route.query里。
+并在BasicLayout里theme从$route.query里取值。
