@@ -1,7 +1,6 @@
 <template>
   <div>
     <a-drawer
-      title="Basic Drawer"
       placement="right"
       :closable="false"
       :visible="visible"
@@ -10,8 +9,8 @@
       width="300px"
     >
       <template v-slot:handle>
-        <div class="handle" @click="visible = !visible">
-          <a-icon type="setting"></a-icon>
+        <div class="handle" @click="toggleDrawerDisplay()">
+          <a-icon :type="drawerHandlerIcon"></a-icon>
         </div>
       </template>
       <p>Some contents...</p>
@@ -27,12 +26,20 @@ export default {
       visible: false
     };
   },
+  computed: {
+    drawerHandlerIcon: function() {
+      return this.visible ? "close" : "setting";
+    }
+  },
   methods: {
     afterVisibleChange(val) {
       console.log("visible", val);
     },
     onClose() {
       this.visible = false;
+    },
+    toggleDrawerDisplay() {
+      this.visible = !this.visible;
     }
   }
 };
