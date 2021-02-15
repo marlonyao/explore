@@ -582,3 +582,41 @@ Header.vue: 调整 header 的样式
 
 主要是在抽屉里引入theme和layout的单选框，change时将值保存在$route.query里。
 并在BasicLayout里theme从$route.query里取值。
+
+## 第五节：如何将菜单与路由结合
+
+[视频](https://time.geekbang.org/course/detail/100024601-92224)
+
+1. 引入菜单
+
+复制 [单文件菜单](https://antdv.com/components/menu-cn/#%E5%8D%95%E6%96%87%E4%BB%B6%E9%80%92%E5%BD%92%E8%8F%9C%E5%8D%95) 的代码到 `SiderMenu.vue` 里。
+
+将里面的 `SubMenu` 组件部分代码复制到 `SubMenu.vue` 里，换成 `import SubMenu from "./SubMenu"`。
+
+在 `main.js` 里引入 `Menu` 组件，并将 `BasicLayout` 的侧边栏组件的宽度也改成 `256px`。
+
+到目前为止，可以显示一个假数据的菜单，但是菜单的主题和导航栏的主题还不同步。接下来需要在 `SiderMenu` 组件增加 `theme` 属性，默认值为 `dark`，类型为 `String`。然后再 `BasicLayout` 将 `navTheme` 传递给 `SiderMenu` 组件的 `theme` 属性。
+
+`BasicLayout.vue`:
+```html
+      <SiderMenu :theme="navTheme" />
+```
+
+`SiderMenu.vue`:
+```
+    <a-menu
+      :default-selected-keys="['1']"
+      :default-open-keys="['2']"
+      mode="inline"
+      :theme="theme"
+      :inline-collapsed="collapsed"
+    >
+    ....
+  props: {
+    theme: {
+      type: String,
+      default: "dark",
+    },
+  },
+```
+
