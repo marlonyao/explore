@@ -17,7 +17,7 @@
         <h2>整体风格定制</h2>
         <a-radio-group
           :value="$route.query.navTheme || 'dark'"
-          @change="(e) => handleSettingChange('navTheme', e.target.value)"
+          @change="e => handleSettingChange('navTheme', e.target.value)"
         >
           <a-radio value="dark">黑色</a-radio>
           <a-radio value="light">白色</a-radio>
@@ -25,7 +25,7 @@
         <h2>导航模式定制</h2>
         <a-radio-group
           :value="$route.query.navLayout || 'left'"
-          @change="(e) => handleSettingChange('navLayout', e.target.value)"
+          @change="e => handleSettingChange('navLayout', e.target.value)"
         >
           <a-radio value="left">左侧</a-radio>
           <a-radio value="top">顶部</a-radio>
@@ -40,13 +40,13 @@ export default {
     return {
       visible: false,
       navTheme: "dark",
-      navLayout: "left",
+      navLayout: "left"
     };
   },
   computed: {
-    drawerHandlerIcon: function () {
+    drawerHandlerIcon: function() {
       return this.visible ? "close" : "setting";
-    },
+    }
   },
   methods: {
     afterVisibleChange(val) {
@@ -60,8 +60,8 @@ export default {
     },
     handleSettingChange(type, value) {
       this.$router.push({ query: { ...this.$route.query, [type]: value } });
-    },
-  },
+    }
+  }
 };
 </script>
 

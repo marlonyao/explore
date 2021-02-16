@@ -23,13 +23,13 @@ import SubMenu from "./SubMenu";
 
 export default {
   components: {
-    "sub-menu": SubMenu,
+    "sub-menu": SubMenu
   },
   props: {
     theme: {
       type: String,
-      default: "dark",
-    },
+      default: "dark"
+    }
   },
   data() {
     return {
@@ -42,40 +42,40 @@ export default {
           children: [
             {
               key: "/dashboard/analysis",
-              title: "分析页",
+              title: "分析页"
             },
             {
               key: "/dashboard/monitor",
-              title: "监控页",
+              title: "监控页"
             },
             {
               key: "/dashboard/workspace",
-              title: "工作台",
-            },
-          ],
+              title: "工作台"
+            }
+          ]
         },
         {
           key: "/form",
           title: "表单",
           icon: "form",
           children: [
-              {
-                  key: "/form/basic-form",
-                  title: "基础表单"
-              },
-              {
-                  key: "/form/step-form",
-                  title: "分步表单"
-              }
+            {
+              key: "/form/basic-form",
+              title: "基础表单"
+            },
+            {
+              key: "/form/step-form",
+              title: "分步表单"
+            }
           ]
-        },
-      ],
+        }
+      ]
     };
   },
   methods: {
     toggleCollapsed() {
       this.collapsed = !this.collapsed;
-    },
-  },
+    }
+  }
 };
 </script>

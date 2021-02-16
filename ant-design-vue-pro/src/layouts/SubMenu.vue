@@ -1,7 +1,9 @@
 <template functional>
   <a-sub-menu :key="props.menuInfo.key">
     <span slot="title">
-      <a-icon v-if="props.menuInfo.icon" :type="props.menuInfo.icon" /><span>{{ props.menuInfo.title }}</span>
+      <a-icon v-if="props.menuInfo.icon" :type="props.menuInfo.icon" /><span>{{
+        props.menuInfo.title
+      }}</span>
     </span>
     <template v-for="item in props.menuInfo.children">
       <a-menu-item v-if="!item.children" :key="item.key">
@@ -14,6 +16,6 @@
 </template>
 <script>
 export default {
-  props: ['menuInfo'],
+  props: ["menuInfo"]
 };
 </script>

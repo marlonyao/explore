@@ -44,21 +44,21 @@ export default {
     Header,
     Footer,
     SiderMenu,
-    SettingsDrawer,
+    SettingsDrawer
   },
   data() {
     return {
-      collapsed: false,
+      collapsed: false
     };
   },
   computed: {
-    navTheme: function () {
+    navTheme: function() {
       return this.$route.query.navTheme || "dark";
     },
-    navLayout: function () {
+    navLayout: function() {
       return this.$route.query.navLayout || "left";
-    },
-  },
+    }
+  }
 };
 </script>
 
