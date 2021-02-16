@@ -1,15 +1,15 @@
 <template>
   <div style="width: 256px">
     <a-menu
-      :default-selected-keys="['1']"
-      :default-open-keys="['2']"
+      :default-selected-keys="['/dashboard/monitor']"
+      :default-open-keys="['/dashboard', '/form']"
       mode="inline"
       :theme="theme"
       :inline-collapsed="collapsed"
     >
       <template v-for="item in list">
         <a-menu-item v-if="!item.children" :key="item.key">
-          <a-icon type="pie-chart" />
+          <a-icon v-if="item.icon" :type="item.icon" />
           <span>{{ item.title }}</span>
         </a-menu-item>
         <sub-menu v-else :key="item.key" :menu-info="item" />
@@ -36,19 +36,38 @@ export default {
       collapsed: false,
       list: [
         {
-          key: "1",
-          title: "Option 1",
-        },
-        {
-          key: "2",
-          title: "Navigation 2",
+          key: "/dashboard",
+          icon: "dashboard",
+          title: "仪表盘",
           children: [
             {
-              key: "2.1",
-              title: "Navigation 3",
-              children: [{ key: "2.1.1", title: "Option 2.1.1" }],
+              key: "/dashboard/analysis",
+              title: "分析页",
+            },
+            {
+              key: "/dashboard/monitor",
+              title: "监控页",
+            },
+            {
+              key: "/dashboard/workspace",
+              title: "工作台",
             },
           ],
+        },
+        {
+          key: "/form",
+          title: "表单",
+          icon: "form",
+          children: [
+              {
+                  key: "/form/basic-form",
+                  title: "基础表单"
+              },
+              {
+                  key: "/form/step-form",
+                  title: "分步表单"
+              }
+          ]
         },
       ],
     };

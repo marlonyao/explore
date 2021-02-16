@@ -1,11 +1,11 @@
 <template functional>
   <a-sub-menu :key="props.menuInfo.key">
     <span slot="title">
-      <a-icon type="mail" /><span>{{ props.menuInfo.title }}</span>
+      <a-icon v-if="props.menuInfo.icon" :type="props.menuInfo.icon" /><span>{{ props.menuInfo.title }}</span>
     </span>
     <template v-for="item in props.menuInfo.children">
       <a-menu-item v-if="!item.children" :key="item.key">
-        <a-icon type="pie-chart" />
+        <a-icon v-if="item.icon" :type="item.icon" />
         <span>{{ item.title }}</span>
       </a-menu-item>
       <sub-menu v-else :key="item.key" :menu-info="item" />
